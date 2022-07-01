@@ -10,7 +10,7 @@
 // do {
 
 //     const compra = (a, b) => { return a * b};
-
+    
      
 //     let producto = Number(prompt(`
 // Elija y escriba el numero segun sea su eleccion de algunas de las siguientes opciones:
