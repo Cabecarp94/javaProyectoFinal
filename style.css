@@ -1,0 +1,84 @@
+body {
+    margin: 0px;
+    background-color: aliceblue;
+}
+
+button {
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+.pageNav {
+    background-color: #2196f3;
+    border: 1px solid black;
+    position: relative;
+}
+
+
+.pageNav h1 {
+    margin: 20px;
+}
+
+
+.buttonCarrito {
+    background-color: white;
+    color: black;
+    border: 2px solid #4caf50;
+    transition-duration: 0.4s;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+
+
+.buttonCarrito:hover {
+    background-color: #4caf50;
+    color: white;
+}
+
+.pageContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid red;
+}
+
+
+.productContainer {
+    margin: 15px;
+    padding: 2px 16px;
+    position: relative;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 1);
+    background-color: white;
+    text-align: center;
+
+}
+
+
+.productContainer:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 2);
+}
+
+
+.productContainer img {
+    width: 224px;
+    height: 224px;
+}
+
+
+.buttonAdd {
+    background-color: white;
+    color: black;
+    border: 2px solid #4caf50;
+    transition-duration: 0.4s;
+    /* position: absolute;
+    right: 15px;
+    bottom: 10px; */
+}
+
+.buttonAdd:hover {
+    background-color: #4caf50;
+    color: white;
+}

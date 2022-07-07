@@ -24,10 +24,10 @@ let precioSam = 0;
 let precioIph = 0;
 let precioXia = 0;
 
-for (const producto of productos) {
-    precioSam = productos.precio
-    console.log(precioSam);
-};
+// for (const producto of productos) {
+//     precioSam = productos.precio
+//     console.log(precioSam);
+// };   Debo terminar esto, mañana porque no me funciona
 
 
 alert("Bienvenidos a Dungeon Celulares");
