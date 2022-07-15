@@ -6,29 +6,58 @@ let volver = false;
      
 
 class ProductosNew {
-    constructor(id, nombre, precio) {
+    constructor(id, nombre, precio, img) {
         this.id = id
         this.nombre = nombre
         this.precio = precio
+        this.img = img
     }
-
 }
 
 const productos = [];
+const carrito = [];
 
-let samsung = productos.push(new ProductosNew(1, "S22 Ultra", 260000));
+let samsung = productos.push(new ProductosNew(1, "S22 Ultra", 260000,));
 let iphone = productos.push(new ProductosNew(2, "Iphone 13 Pro max", 295000));
 let Xiaomi = productos.push(new ProductosNew(3, "Xiaomi Mi 12", 210000));
 
-let precioSam = 0;
-let precioIph = 0;
-let precioXia = 0;
+console.log(productos);
+
+const contenedorProductos = document.getElementById('contenedorProductos')
+
+productos.forEach((producto) => {
+    const div = document.createElement("div")
+    div.classList.add("producto")
+    div.innerHTML =`
+    <h3>${producto.nombre}</h3>
+    <h2>${producto.precio}</h2>
+    <button id="agregar${producto.id}" class="buttonAdd">Agregar</button>
+    `
+    contenedorProductos.appendChild(div)
+})
+
+// let precioSam = 0;
+// let precioIph = 0;
+// let precioXia = 0;
 
 // for (const producto of productos) {
-//     precioSam = productos.precio
+//     precioSam = producto.precio
 //     console.log(precioSam);
-// };   Debo terminar esto, mañana porque no me funciona
+// };
 
+// for (const producto of productos) {
+//     precioIph = producto.precio
+//     console.log(precioIph);
+// };
+
+// for (const producto of productos) {
+//     precioXia = producto.precio
+//     console.log(precioXia);
+// };
+
+// // for (let i = 0; i < productos.length; i++) {
+// //     precioSam = (${productos[0].precio})
+// // }
 
 alert("Bienvenidos a Dungeon Celulares");
      
@@ -50,13 +79,13 @@ Luego presione "Aceptar" para continuar`));
      
     switch(producto){
         case 1:
-            precio = 260000;
+            precio = precioSam;
             break;
         case 2:
-            precio = 295000;
+            precio = precioIph;
             break;
         case 3:
-            precio = 210000;
+            precio = precioXia;
             break;
         default:
             alert("No ha elegido una opción correcta");
