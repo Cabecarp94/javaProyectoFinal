@@ -6,17 +6,41 @@ const botonVaciar = document.getElementById('vaciarCarrito')
 
 const contadorCarrito = document.getElementById('contadorCarrito')
 
+const cantidad = document.getElementById('cantidad')
+
 const precioTotal = document.getElementById('precioTotal')
+
+const cantidadTotal = document.getElementById('cantidadTotal')
 
 const carrito = []
 
 // No me funciona el localstorage, voy a tener que revisarlo bien!
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('carrito')){
-        carrito = JSON.parse(localStorage.getItem('carrito'))
-        actualizarCarrito()
+// document.addEventListener('DOMContentLoaded', () => {
+//     if (localStorage.getItem('carrito')){
+//         carrito = JSON.parse(localStorage.getItem(`carrito`))
+//         actualizarCarrito()
+//     }
+// })
+
+document.addEventListener("DOMContentLoaded", () => {
+    let carrito = JSON.parse(localStorage.getItem('carrito'));
+    if (carrito != null) {
+        contenedorCarrito.innerHTML = "";
+        carrito.forEach((prod) => {
+            const div = document.createElement('div')
+            div.className = ('productoEnCarrito')
+            div.innerHTML = `
+            <p>${prod.nombre}</p>
+            <p>Precio:$${prod.precio}</p>
+            <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+            <button onclick="eliminarDelCarrito(${prod.id})" class="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+            `
+            contenedorCarrito.appendChild(div)
+    
+            // localStorage.setItem('carrito', JSON.stringify(carrito))
+        });
     }
-})
+});
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
@@ -29,7 +53,7 @@ productos.forEach((producto) => {
     div.classList.add('producto')
     div.innerHTML =`
     <h3>${producto.nombre}</h3>
-    <h2 class="precioProducto">${producto.precio}</h2>
+    <h2 class="precioProducto">$${producto.precio}</h2>
     <button id="agregar${producto.id}" class="botonAgregar">Agregar<i class="fas fa-shopping-cart"></i></button>
     `
     contenedorProductos.appendChild(div)
@@ -43,10 +67,21 @@ productos.forEach((producto) => {
 
 
 const agregarAlCarrito = (prodId) => {
-    const item = productos.find((prod) => prod.id === prodId)
-    carrito.push(item)
+
+    const existe = carrito.some (prod => prod.id === prodId)
+    if (existe) {
+        const prod = carrito.map (prod => {
+            if ( prod.id === prodId) {
+                prod.cantidad++
+            }
+        })
+    } else { 
+
+        const item = productos.find((prod) => prod.id === prodId)
+        carrito.push(item)
+    }
     actualizarCarrito()
-    console.log(carrito)
+
 }
 
 const eliminarDelCarrito = (prodId) => {
@@ -66,17 +101,16 @@ const actualizarCarrito = () => {
         div.innerHTML = `
         <p>${prod.nombre}</p>
         <p>Precio:$${prod.precio}</p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
         <button onclick="eliminarDelCarrito(${prod.id})" class="botonEliminar"><i class="fas fa-trash-alt"></i></button>
         `
-        // <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p> Todavia no se como meter algo de Stock, meter dentro del inner
-
         contenedorCarrito.appendChild(div)
 
         localStorage.setItem('carrito', JSON.stringify(carrito))
     })
 
     contadorCarrito.innerText = carrito.length
-    precioTotal. innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0)
+    precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
 }
 
 
