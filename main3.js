@@ -113,4 +113,7 @@ const actualizarCarrito = () => {
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
 }
 
+// Debo agregar comentarios de lo que realiza cada funcion para que se entienda lo que quiero que realice el codigo
+// Solucionar el tema de la inserccion de las imagenes en el array para que se muestren en el html
+// Solucionar el problema del local storage que al menos ahora funciona a medias, pero funciona XD
 
